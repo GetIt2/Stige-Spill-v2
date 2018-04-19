@@ -1,0 +1,7 @@
+C:\Users\GET Academy\Documents\GetIT Oppgaver\Stigespill v2\Stigespill v2\bin\Debug\Stigespill v2.exe.config
+C:\Users\GET Academy\Documents\GetIT Oppgaver\Stigespill v2\Stigespill v2\bin\Debug\Stigespill v2.exe
+C:\Users\GET Academy\Documents\GetIT Oppgaver\Stigespill v2\Stigespill v2\bin\Debug\Stigespill v2.pdb
+C:\Users\GET Academy\Documents\GetIT Oppgaver\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.csprojResolveAssemblyReference.cache
+C:\Users\GET Academy\Documents\GetIT Oppgaver\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.csproj.CoreCompileInputs.cache
+C:\Users\GET Academy\Documents\GetIT Oppgaver\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.exe
+C:\Users\GET Academy\Documents\GetIT Oppgaver\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.pdb
