@@ -8,21 +8,16 @@ namespace Stigespill_v2
     {
         static void Main(string[] args)
         {
-            var game = new Game();
+            var game = new Game(10, 10);
             game.AddPlayer("Emil", '♥');
             game.AddPlayer("Kvamme", '♣');
             game.AddPlayer("Hellenes", '♦');
             game.AddPlayer("Lill", '♠');
-            game.PlaceGamePiecesFromStart();
 
             var gameView = new GameView(game);
+            gameView.Show();
 
-            while (true)
-            {
-                gameView.Show();
-                Console.WriteLine("(press enter for new. ctrl+c=exit)");
-                Console.ReadLine();
-            }
+            Console.ReadLine();
         }
     }
 }

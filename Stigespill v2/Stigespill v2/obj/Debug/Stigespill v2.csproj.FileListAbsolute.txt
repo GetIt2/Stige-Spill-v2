@@ -9,3 +9,10 @@ C:\Users\terje\Source\Repos\Stige-Spill-v2\Stigespill v2\Stigespill v2\obj\Debug
 C:\Users\terje\Source\Repos\Stige-Spill-v2\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.csproj.CoreCompileInputs.cache
 C:\Users\terje\Source\Repos\Stige-Spill-v2\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.exe
 C:\Users\terje\Source\Repos\Stige-Spill-v2\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.pdb
+C:\git\Stige-Spill-v2\Stigespill v2\Stigespill v2\bin\Debug\Stigespill v2.exe.config
+C:\git\Stige-Spill-v2\Stigespill v2\Stigespill v2\bin\Debug\Stigespill v2.exe
+C:\git\Stige-Spill-v2\Stigespill v2\Stigespill v2\bin\Debug\Stigespill v2.pdb
+C:\git\Stige-Spill-v2\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.csprojResolveAssemblyReference.cache
+C:\git\Stige-Spill-v2\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.csproj.CoreCompileInputs.cache
+C:\git\Stige-Spill-v2\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.exe
+C:\git\Stige-Spill-v2\Stigespill v2\Stigespill v2\obj\Debug\Stigespill v2.pdb

@@ -5,25 +5,27 @@ namespace Stigespill_v2.View
 {
     public class GameView
     {
-        public const int TileWidth = 8;
-        public const int TileHeight = 4;
         private Game _game;
+        private TileView[] _tileViews;
 
         public GameView(Game game)
         {
             _game = game;
+            _tileViews = new TileView[_game.TileCount];
+            for (var index = 0; index < game.Tiles.Length; index++)
+            {
+                _tileViews[index] = new TileView(game.Tiles[index]);
+            }
         }
 
         public void Show()
         {
-            var board = new BoardView(
-                TileWidth * _game.ColumnCount,
-                TileHeight * _game.RowCount);
-            foreach (var tile in tiles)
+            Console.Clear();
+            foreach (var tileView in _tileViews)
             {
-                board.Add(tile);
+                tileView.Show();
             }
-            board.Show();
+
         }
     }
 }
