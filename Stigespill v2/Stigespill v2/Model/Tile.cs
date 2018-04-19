@@ -3,11 +3,23 @@
     public class Tile
     {
         private readonly int _columnCount;
+        public Player[] Players { get; }
 
         public Tile(int arrayIndex, int columnCount)
         {
             _columnCount = columnCount;
             ArrayIndex = arrayIndex;
+            Players = new Player[4];
+        }
+
+        public void ArrivePlayer(Player player)
+        {
+            Players[player.Index] = player;
+        }
+
+        public void DepartPlayer(Player player)
+        {
+            Players[player.Index] = null;
         }
 
         public Jump Jump { get; }

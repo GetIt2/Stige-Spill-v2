@@ -50,8 +50,7 @@ namespace Stigespill_v2.Model
 
         public void AddPlayer(string name, char symbol)
         {
-            var player = new Player(name, symbol);
-            
+            var player = new Player(this, name, symbol, _playerCount);            
             Players[_playerCount] = player;
             _playerCount++;
         }

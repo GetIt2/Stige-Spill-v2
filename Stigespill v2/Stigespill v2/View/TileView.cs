@@ -19,6 +19,24 @@ namespace Stigespill_v2.View
 
         public void Show()
         {
+            WriteBorder();
+            ShowPlayer(1);
+            ShowPlayer(2);
+            ShowPlayer(3);
+            ShowPlayer(4);
+        }
+
+        private void ShowPlayer(int index)
+        {
+            var player = _tile.Players[index];
+            if (player == null) return;
+            Console.CursorTop = Y;
+            Console.CursorLeft = X + 2 * index;
+            Console.Write(player.Symbol);
+        }
+
+        private void WriteBorder()
+        {
             WriteSolid(BorderCharacter, X, Y, TileWidth);
             for (var dy = 0; dy < TileHeight; dy++)
                 WriteHollow(BorderCharacter, X, Y + dy, TileWidth);
