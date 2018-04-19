@@ -9,10 +9,10 @@ namespace Stigespill_v2
         static void Main(string[] args)
         {
             var game = new Game(10, 10);
-            game.AddPlayer("Emil", '♥');
-            game.AddPlayer("Kvamme", '♣');
-            game.AddPlayer("Hellenes", '♦');
-            game.AddPlayer("Lill", '♠');
+            game.AddPlayer("Emil", 'E');
+            game.AddPlayer("Kvamme", 'K');
+            game.AddPlayer("Hellenes", 'H');
+            game.AddPlayer("Lill", 'L');
 
             var gameView = new GameView(game);
             gameView.Show();

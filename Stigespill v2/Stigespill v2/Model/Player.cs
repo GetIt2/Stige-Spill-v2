@@ -12,7 +12,7 @@
             Index = index;
             Name = name;
             Symbol = symbol;
-            game.Tiles[index].ArrivePlayer(this);
+            game.StartTile.ArrivePlayer(this);
         }
     }
 }

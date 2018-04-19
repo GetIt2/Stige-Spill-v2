@@ -20,18 +20,20 @@ namespace Stigespill_v2.View
         public void Show()
         {
             WriteBorder();
-            ShowPlayer(1);
-            ShowPlayer(2);
-            ShowPlayer(3);
-            ShowPlayer(4);
+            foreach (var player in _tile.Players)
+            {
+                ShowPlayer(player);
+            }
+            Console.CursorTop = Y + 1;
+            Console.CursorLeft = X + 1;
+            Console.Write(_tile.Label);
         }
 
-        private void ShowPlayer(int index)
+        private void ShowPlayer(Player player)
         {
-            var player = _tile.Players[index];
             if (player == null) return;
-            Console.CursorTop = Y;
-            Console.CursorLeft = X + 2 * index;
+            Console.CursorTop = Y + 2;
+            Console.CursorLeft = X + 1 + 2 * player.Index;
             Console.Write(player.Symbol);
         }
 

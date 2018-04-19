@@ -10,6 +10,8 @@ namespace Stigespill_v2.Model
         private int _playerCount;
         public Player[] Players { get; }
         public Tile[] Tiles { get; }
+        public Tile StartTile { get; private set; }
+        public Tile FinishTile { get; private set; }
 
         public Game(int columnCount, int rowCount)
         {
@@ -19,6 +21,8 @@ namespace Stigespill_v2.Model
             _playerCount = 0;
             Tiles = InitBoardTiles();
             InitGamePositions();
+            StartTile.Label = "Start";
+            FinishTile.Label = "Finish";
         }
 
         private void InitGamePositions()
@@ -27,9 +31,13 @@ namespace Stigespill_v2.Model
             {
                 var rowIndex = RowCount - gamePosition / RowCount - 1;
                 var columnIndex = gamePosition % ColumnCount;
-                if (IsRightToLeftRow(rowIndex)) columnIndex = ColumnCount - columnIndex;
+                if (IsRightToLeftRow(rowIndex)) columnIndex = ColumnCount - columnIndex - 1;
                 var arrayIndex = rowIndex * ColumnCount + columnIndex;
-                Tiles[arrayIndex].GamePosition = gamePosition;
+                var tile = Tiles[arrayIndex];
+                tile.GamePosition = gamePosition;
+                if (gamePosition == 0) StartTile = tile;
+                else if (gamePosition == TileCount - 1) FinishTile = tile;
+
             }
         }
 
