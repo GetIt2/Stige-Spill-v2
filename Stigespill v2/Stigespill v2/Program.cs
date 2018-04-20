@@ -13,11 +13,16 @@ namespace Stigespill_v2
             game.AddPlayer("Kvamme", 'K');
             game.AddPlayer("Hellenes", 'H');
             game.AddPlayer("Lill", 'L');
-
             var gameView = new GameView(game);
             gameView.Show();
+            while (true)
+            {
 
-            Console.ReadLine();
+                game.PlayerTurn();
+                gameView.Show();
+                Console.ReadLine();
+
+            }
         }
     }
 }

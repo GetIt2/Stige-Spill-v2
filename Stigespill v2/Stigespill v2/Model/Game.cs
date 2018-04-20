@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace Stigespill_v2.Model
 {
     public class Game
     {
+        public Random Random = new Random();
         public int ColumnCount { get; }
         public int RowCount { get; }
         public int TileCount => ColumnCount * RowCount;
@@ -12,6 +14,7 @@ namespace Stigespill_v2.Model
         public Tile[] Tiles { get; }
         public Tile StartTile { get; private set; }
         public Tile FinishTile { get; private set; }
+        private int _playerTurnIndex;
 
         public Game(int columnCount, int rowCount)
         {
@@ -23,6 +26,7 @@ namespace Stigespill_v2.Model
             InitGamePositions();
             StartTile.Label = "Start";
             FinishTile.Label = "Finish";
+            _playerTurnIndex = 0;
         }
 
         private void InitGamePositions()
@@ -58,9 +62,25 @@ namespace Stigespill_v2.Model
 
         public void AddPlayer(string name, char symbol)
         {
-            var player = new Player(this, name, symbol, _playerCount);            
+            var player = new Player(this, name, symbol, _playerCount);
             Players[_playerCount] = player;
             _playerCount++;
+        }
+
+        public void PlayerTurn()
+        {
+            if (_playerTurnIndex == Players.Length) _playerTurnIndex = 0;
+            var dice = Random.Next(1, 6);
+            if (Players[_playerTurnIndex].Name == "Kvamme") dice = 6;
+            if (Players[_playerTurnIndex].Name == "Emil") dice = 1;
+            Console.WriteLine($"{Players[_playerTurnIndex].Name}'s Turn");
+            Console.ReadKey();
+            Console.WriteLine($"{Players[_playerTurnIndex].Name} got {dice}");
+            Console.ReadKey();
+            Tiles[Players[_playerTurnIndex].GamePosition].DepartPlayer(Players[_playerTurnIndex]);
+            Players[_playerTurnIndex].MovePlayer(dice);
+            Tiles[Players[_playerTurnIndex].GamePosition].ArrivePlayer(Players[_playerTurnIndex]);
+            _playerTurnIndex++;
         }
     }
 }

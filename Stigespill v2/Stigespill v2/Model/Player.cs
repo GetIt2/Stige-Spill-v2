@@ -14,5 +14,10 @@
             Symbol = symbol;
             game.StartTile.ArrivePlayer(this);
         }
+
+        public void MovePlayer(int dice)
+        {
+            GamePosition += dice;
+        }
     }
 }
