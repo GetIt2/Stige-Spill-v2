@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Stigespill_v2.Model;
 
 namespace Stigespill_v2.View
@@ -35,7 +36,7 @@ namespace Stigespill_v2.View
             Console.ReadKey();
             SetCursor(1);
             Console.WriteLine($"{players[playerTurnIndex].Name} got {dice}");
-            Console.ReadKey();
+            Thread.Sleep(1000);
         }
 
         private static void SetCursor(int index)

@@ -42,7 +42,7 @@ namespace Stigespill_v2.Model
                 tile.GamePosition = gamePosition;
                 if (gamePosition == 0) StartTile = tile;
                 else if (gamePosition == TileCount - 1) FinishTile = tile;
-
+                else tile.Label = gamePosition.ToString();
             }
         }
 
@@ -73,19 +73,33 @@ namespace Stigespill_v2.Model
             if (_playerTurnIndex == Players.Length) _playerTurnIndex = 0;
             var dice = Random.Next(1, 6);
             GameView.AnnounceTurn(Players ,_playerTurnIndex, dice);
-            foreach (var tile in Tiles)
-            {
-                if (Players[_playerTurnIndex].GamePosition == tile.GamePosition)
-                    tile.DepartPlayer(Players[_playerTurnIndex]);
-            }
+            FindDepartTile();
             Players[_playerTurnIndex].MovePlayer(dice);
+            FindArriveTile();
+            FindDepartTile();
+            var jumpTo = Jump.CheckForJumpTile(Players[_playerTurnIndex].GamePosition);
+            Players[_playerTurnIndex].Jump(jumpTo);
+            FindArriveTile();
+            
+            _playerTurnIndex++;
+        }
+
+        private void FindArriveTile()
+        {
             foreach (var tile in Tiles)
             {
                 if (Players[_playerTurnIndex].GamePosition == tile.GamePosition)
                     tile.ArrivePlayer(Players[_playerTurnIndex]);
             }
-            _playerTurnIndex++;
         }
 
+        private void FindDepartTile()
+        {
+            foreach (var tile in Tiles)
+            {
+                if (Players[_playerTurnIndex].GamePosition == tile.GamePosition)
+                    tile.DepartPlayer(Players[_playerTurnIndex]);
+            }
+        }
     }
 }

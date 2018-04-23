@@ -20,7 +20,6 @@ namespace Stigespill_v2
 
                 game.PlayerTurn();
                 gameView.Show();
-                Console.ReadLine();
 
             }
         }

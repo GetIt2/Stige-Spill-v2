@@ -19,5 +19,10 @@
         {
             GamePosition += dice;
         }
+
+        public void Jump(int jumpTo)
+        {
+            GamePosition = jumpTo;
+        }
     }
 }
