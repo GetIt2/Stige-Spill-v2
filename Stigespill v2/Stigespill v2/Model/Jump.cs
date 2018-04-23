@@ -2,24 +2,30 @@
 {
     public class Jump
     {
-        public static int CheckForJumpTile(int currentTile)
+        public Tile To { get; }
+
+        public Jump(Tile to)
         {
-            if (currentTile == 1) return 43;
-            else if (currentTile == 5) return 34;
-            else if (currentTile == 11) return 9;
-            else if (currentTile == 18) return 2;
-            else if (currentTile == 29) return 33;
-            else if (currentTile == 41) return 78;
-            else if (currentTile == 47) return 65;
-            else if (currentTile == 48) return 27;
-            else if (currentTile == 57) return 43;
-            else if (currentTile == 61) return 41;
-            else if (currentTile == 69) return 73;
-            else if (currentTile == 76) return 84;
-            else if (currentTile == 83) return 15;
-            else if (currentTile == 88) return 93;
-            else if (currentTile == 96) return 86;
-            else return currentTile;
+            To = to;
+        }
+
+        public static void InitJumps(Game game)
+        {
+            game.AddJump(1, 43);
+            game.AddJump(5, 34);
+            game.AddJump(11, 9);
+            game.AddJump(18, 2);
+            game.AddJump(29, 33);
+            game.AddJump(41, 78);
+            game.AddJump(47, 65);
+            game.AddJump(48, 27);
+            game.AddJump(57, 43);
+            game.AddJump(61, 41);
+            game.AddJump(69, 73);
+            game.AddJump(76, 84);
+            game.AddJump(83, 15);
+            game.AddJump(88, 93);
+            game.AddJump(96, 86);
         }
     }
 }

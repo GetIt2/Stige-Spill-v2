@@ -5,7 +5,7 @@
         private readonly int _columnCount;
         public Player[] Players { get; }
         public string Label { get; set; }
-        public Jump Jump { get; }
+        public Jump Jump { get; private set; }
         public int GamePosition { get; set; }
         public int ArrayIndex { get; }
         public int RowIndex => ArrayIndex / _columnCount;
@@ -18,6 +18,11 @@
             ArrayIndex = arrayIndex;
             Players = new Player[4];
             Label = string.Empty;
+        }
+
+        public void AddJump(Tile destinationTile)
+        {
+            Jump = new Jump(destinationTile);
         }
 
         public void ArrivePlayer(Player player)

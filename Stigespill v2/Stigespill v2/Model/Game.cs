@@ -16,18 +16,35 @@ namespace Stigespill_v2.Model
         public Tile StartTile { get; private set; }
         public Tile FinishTile { get; private set; }
         private int _playerTurnIndex;
+        private int[] _arrayIndexFromGamePosition;
 
         public Game(int columnCount, int rowCount)
         {
             RowCount = rowCount;
             ColumnCount = columnCount;
             Players = new Player[4];
+            _arrayIndexFromGamePosition = new int[TileCount];
             _playerCount = 0;
             Tiles = InitBoardTiles();
             InitGamePositions();
+            InitJumps();
             StartTile.Label = "Start";
             FinishTile.Label = "Finish";
             _playerTurnIndex = 0;
+        }
+
+        private void InitJumps()
+        {
+            Jump.InitJumps(this);
+        }
+
+        public void AddJump(int fromGamePosition, int toGamePosition)
+        {
+            var fromArrayIndex = _arrayIndexFromGamePosition[fromGamePosition];
+            var toArrayIndex = _arrayIndexFromGamePosition[toGamePosition];
+            var fromTile = Tiles[fromArrayIndex];
+            var toTile = Tiles[toArrayIndex];
+            fromTile.AddJump(toTile);
         }
 
         private void InitGamePositions()
@@ -40,6 +57,7 @@ namespace Stigespill_v2.Model
                 var arrayIndex = rowIndex * ColumnCount + columnIndex;
                 var tile = Tiles[arrayIndex];
                 tile.GamePosition = gamePosition;
+                _arrayIndexFromGamePosition[gamePosition] = arrayIndex;
                 if (gamePosition == 0) StartTile = tile;
                 else if (gamePosition == TileCount - 1) FinishTile = tile;
                 else tile.Label = gamePosition.ToString();
@@ -72,34 +90,25 @@ namespace Stigespill_v2.Model
         {
             if (_playerTurnIndex == Players.Length) _playerTurnIndex = 0;
             var dice = Random.Next(1, 6);
-            GameView.AnnounceTurn(Players ,_playerTurnIndex, dice);
-            FindDepartTile();
-            Players[_playerTurnIndex].MovePlayer(dice);
-            FindArriveTile();
-            FindDepartTile();
-            var jumpTo = Jump.CheckForJumpTile(Players[_playerTurnIndex].GamePosition);
-            Players[_playerTurnIndex].Jump(jumpTo);
-            FindArriveTile();
-            
+            GameView.AnnounceTurn(Players, _playerTurnIndex, dice);
+            var player = Players[_playerTurnIndex];
+            player.MovePlayer(dice);
             _playerTurnIndex++;
         }
 
-        private void FindArriveTile()
+        public Tile FindArriveTile()
         {
-            foreach (var tile in Tiles)
-            {
-                if (Players[_playerTurnIndex].GamePosition == tile.GamePosition)
-                    tile.ArrivePlayer(Players[_playerTurnIndex]);
-            }
+            var player = Players[_playerTurnIndex];
+            var arrayIndex = _arrayIndexFromGamePosition[player.GamePosition];
+            return Tiles[arrayIndex];
+            
         }
 
-        private void FindDepartTile()
+        public Tile FindDepartTile()
         {
-            foreach (var tile in Tiles)
-            {
-                if (Players[_playerTurnIndex].GamePosition == tile.GamePosition)
-                    tile.DepartPlayer(Players[_playerTurnIndex]);
-            }
+            var player = Players[_playerTurnIndex];
+            var arrayIndex = _arrayIndexFromGamePosition[player.GamePosition];
+            return Tiles[arrayIndex];
         }
     }
 }
