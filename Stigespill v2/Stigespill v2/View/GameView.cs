@@ -6,7 +6,7 @@ namespace Stigespill_v2.View
     public class GameView
     {
         private Game _game;
-        private TileView[] _tileViews;
+        private static TileView[] _tileViews;
 
         public GameView(Game game)
         {
@@ -26,6 +26,22 @@ namespace Stigespill_v2.View
                 tileView.Show();
             }
 
+        }
+
+        public static void AnnounceTurn(Player[] players, int playerTurnIndex, int dice)
+        {
+            SetCursor(0);
+            Console.WriteLine($"{players[playerTurnIndex].Name}'s Turn");
+            Console.ReadKey();
+            SetCursor(1);
+            Console.WriteLine($"{players[playerTurnIndex].Name} got {dice}");
+            Console.ReadKey();
+        }
+
+        private static void SetCursor(int index)
+        {
+            Console.CursorLeft = _tileViews[_tileViews.Length - 1].GetX() + _tileViews[_tileViews.Length - 1].GetWidth();
+            Console.CursorTop = index;
         }
     }
 }

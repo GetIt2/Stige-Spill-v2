@@ -60,5 +60,21 @@ namespace Stigespill_v2.View
             Console.CursorLeft = x;
             while (width-- >= 0) Console.Write(c);
         }
+
+        public void ResetCursor()
+        {
+            Console.CursorLeft = 0;
+            Console.CursorTop = Y + 1;
+        }
+
+        public int GetX()
+        {
+            return X;
+        }
+
+        public int GetWidth()
+        {
+            return TileWidth + 1;
+        }
     }
 }

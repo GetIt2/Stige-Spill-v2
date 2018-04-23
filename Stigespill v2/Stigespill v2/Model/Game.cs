@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Stigespill_v2.View;
 
 namespace Stigespill_v2.Model
 {
@@ -71,16 +72,20 @@ namespace Stigespill_v2.Model
         {
             if (_playerTurnIndex == Players.Length) _playerTurnIndex = 0;
             var dice = Random.Next(1, 6);
-            if (Players[_playerTurnIndex].Name == "Kvamme") dice = 6;
-            if (Players[_playerTurnIndex].Name == "Emil") dice = 1;
-            Console.WriteLine($"{Players[_playerTurnIndex].Name}'s Turn");
-            Console.ReadKey();
-            Console.WriteLine($"{Players[_playerTurnIndex].Name} got {dice}");
-            Console.ReadKey();
-            Tiles[Players[_playerTurnIndex].GamePosition].DepartPlayer(Players[_playerTurnIndex]);
+            GameView.AnnounceTurn(Players ,_playerTurnIndex, dice);
+            foreach (var tile in Tiles)
+            {
+                if (Players[_playerTurnIndex].GamePosition == tile.GamePosition)
+                    tile.DepartPlayer(Players[_playerTurnIndex]);
+            }
             Players[_playerTurnIndex].MovePlayer(dice);
-            Tiles[Players[_playerTurnIndex].GamePosition].ArrivePlayer(Players[_playerTurnIndex]);
+            foreach (var tile in Tiles)
+            {
+                if (Players[_playerTurnIndex].GamePosition == tile.GamePosition)
+                    tile.ArrivePlayer(Players[_playerTurnIndex]);
+            }
             _playerTurnIndex++;
         }
+
     }
 }
